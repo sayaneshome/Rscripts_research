@@ -75,3 +75,64 @@ pir_reference2 <- read.table("PiR_base.txt")
 
 
 
+#t-test analysis
+
+
+
+
+
+
+
+
+
+Control <- read_xlsx('Raw_wholemilk_normalised.xlsx')
+Past_homo_Skim <- read_xlsx('Past_homo_skim_normalised.xlsx')
+Homo_HT_Skim <- read_xlsx('Homo_HT_Skim_normalised.xlsx')
+Post_Skim <- read_xlsx('Post_cream_normalised.xlsx')
+Raw_HT_Skim <- read_xlsx('Raw_HT_skim_normalised.xlsx')
+SC_BM <- read_xlsx('SC_BM_normalised.xlsx')
+Control <- Control[, -c(3:6)]
+
+Past_homo_Skim_vsControl <- merge(Control,Past_homo_Skim,by="miRNA")
+Homo_HT_Skim_vsControl <- merge(Control,Homo_HT_Skim,by="miRNA")
+Post_Skim_vsControl <- merge(Control,Post_Skim,by="miRNA")
+SC_BMvsControl <- merge(Control,SC_BM,by="miRNA")
+Raw_HTSKim_vsControl <- merge(Control,Raw_HT_Skim,by="miRNA")
+
+SC_BMvsControl1 <- SC_BMvsControl[-grep("piR", SC_BMvsControl$miRNA), ]
+Raw_HTSKim_vsControl1 <- Raw_HTSKim_vsControl[-grep("piR", Raw_HTSKim_vsControl$miRNA), ]
+Post_SKim_vsControl1 <- Post_Skim_vsControl[-grep("piR", Post_Skim_vsControl$miRNA), ]
+Past_homo_Skim_vsControl1 <- Past_homo_Skim_vsControl[-grep("piR", Past_homo_Skim_vsControl$miRNA), ]
+Homo_HT_Skim_vsControl1 <- Homo_HT_Skim_vsControl[-grep("piR", Homo_HT_Skim_vsControl$miRNA), ]
+
+
+t.test(Homo_HT_Skim_vsControl1$Control_R1, Homo_HT_Skim_vsControl1$Homo_HTSK_R1, paired = TRUE, alternative = "two.sided")
+t.test(Homo_HT_Skim_vsControl1$Control_R2, Homo_HT_Skim_vsControl1$Homo_HTSK_R2, paired = TRUE, alternative = "two.sided")
+t.test(Homo_HT_Skim_vsControl1$Control_R3, Homo_HT_Skim_vsControl1$Homo_HTSK_R3, paired = TRUE, alternative = "two.sided")
+t.test(Homo_HT_Skim_vsControl1$Control_R4, Homo_HT_Skim_vsControl1$Homo_HTSK_R4, paired = TRUE, alternative = "two.sided")
+t.test(Past_homo_Skim_vsControl1$Control_R1, Past_homo_Skim_vsControl1$Past_hoSK_R1, paired = TRUE, alternative = "two.sided")
+t.test(Past_homo_Skim_vsControl1$Control_R2, Past_homo_Skim_vsControl1$Past_hoSK_R2, paired = TRUE, alternative = "two.sided")
+t.test(Past_homo_Skim_vsControl1$Control_R3, Past_homo_Skim_vsControl1$Past_hoSK_R3, paired = TRUE, alternative = "two.sided")
+t.test(Past_homo_Skim_vsControl1$Control_R4, Past_homo_Skim_vsControl1$Past_hoSK_R4, paired = TRUE, alternative = "two.sided")
+t.test(Post_SKim_vsControl1$Control_R1, Post_SKim_vsControl1$Post_SK_R1, paired = TRUE, alternative = "two.sided")
+t.test(Post_SKim_vsControl1$Control_R2, Post_SKim_vsControl1$Post_SK_R2, paired = TRUE, alternative = "two.sided")
+t.test(Post_SKim_vsControl1$Control_R3, Post_SKim_vsControl1$Post_SK_R3, paired = TRUE, alternative = "two.sided")
+t.test(Post_SKim_vsControl1$Control_R4, Post_SKim_vsControl1$Post_SK_R4, paired = TRUE, alternative = "two.sided")
+View(Raw_HTSKim_vsControl1)
+t.test(Raw_HTSKim_vsControl1$Control_R1, Raw_HTSKim_vsControl1$Raw_HTSK_R1, paired = TRUE, alternative = "two.sided")
+t.test(Raw_HTSKim_vsControl1$Control_R2, Raw_HTSKim_vsControl1$Raw_HTSK_R2, paired = TRUE, alternative = "two.sided")
+t.test(Raw_HTSKim_vsControl1$Control_R3, Raw_HTSKim_vsControl1$Raw_HTSK_R3, paired = TRUE, alternative = "two.sided")
+t.test(Raw_HTSKim_vsControl1$Control_R4, Raw_HTSKim_vsControl1$Raw_HTSK_R4, paired = TRUE, alternative = "two.sided")
+View(SC_BMvsControl1)
+t.test(SC_BMvsControl1$Control_R1, SC_BMvsControl1$SCBM_R1, paired = TRUE, alternative = "two.sided")
+t.test(SC_BMvsControl1$Control_R2, SC_BMvsControl1$SCBM_R2, paired = TRUE, alternative = "two.sided")
+t.test(SC_BMvsControl1$Control_R3, SC_BMvsControl1$SCBM_R3, paired = TRUE, alternative = "two.sided")
+t.test(SC_BMvsControl1$Control_R4, SC_BMvsControl1$SCBM_R4, paired = TRUE, alternative = "two.sided")
+write.csv(Past_homo_Skim_vsControl1,"Control_past_homo_skim.csv")
+write.csv(Post_SKim_vsControl1,"Control_post_skim.csv")
+write.csv(Raw_HTSKim_vsControl1,"Control_raw_HTSKIM.csv")
+write.csv(SC_BMvsControl1,"Control_SC_BM.csv")
+
+
+
+
