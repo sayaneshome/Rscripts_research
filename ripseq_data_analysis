@@ -112,7 +112,33 @@ merge_11$est_counts <- NULL
 colnames(merge_11)[14]<-"MnFIP_S12_L001_R1_001"
 
 
+#Reference : https://www.datanovia.com/en/lessons/heatmap-in-r-static-and-interactive-visualization/
 
+test_file <- read.csv('all_samples_rip12_combined_nulls_removed.csv')
+list <- test_file$Gene_name
+test_file$Mn1ip <- NULL
+test_file$C1input <- NULL
+test_file$C1ip <- NULL
+test_file$Mn1input <- NULL
+library(dplyr)
+test_file[, 4:15] <- log(test_file[4:15], 10)
+test_file <-test_file %>% 
+  filter_if(~is.numeric(.), all_vars(!is.infinite(.)))
+
+write.csv(list,'list.csv')
+immune_list <- read.csv('list2.csv',header = FALSE)
+colnames(immune_list)[1] <- "Gene_name"
+immune_df <- merge(test_file,immune_list,by = 'Gene_name')
+df <- immune_df
+df$X <- NULL
+df$target_id <- NULL
+sample1 <- as.matrix(df3[,-1])
+sample2 <- log10(sample1)
+sample1 <- sample1
+row.names(sample1) <- df3[,1]
+par(mar=c(1,1,1,1))
+library("gplots")
+heatmap.2(sample1, scale = "none", col = bluered(100), trace = "none", density.info = "none")
 
 
 
