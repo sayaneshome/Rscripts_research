@@ -134,5 +134,26 @@ write.csv(Raw_HTSKim_vsControl1,"Control_raw_HTSKIM.csv")
 write.csv(SC_BMvsControl1,"Control_SC_BM.csv")
 
 
+#included holm-bonferroni correction :
 
-
+p[1] <- t.test(Homo_HT_Skim_vsControl1$X1.x, Homo_HT_Skim_vsControl1$X1.y, paired = TRUE, alternative = "two.sided")$p.value
+p[2] <- t.test(Homo_HT_Skim_vsControl1$X2.x, Homo_HT_Skim_vsControl1$X2.y, paired = TRUE, alternative = "two.sided")$p.value
+p[3] <- t.test(Homo_HT_Skim_vsControl1$X3.x, Homo_HT_Skim_vsControl1$X3.y, paired = TRUE, alternative = "two.sided")$p.value
+p[4] <- t.test(Homo_HT_Skim_vsControl1$X4.x, Homo_HT_Skim_vsControl1$X4.y, paired = TRUE, alternative = "two.sided")$p.value
+p[5] <- t.test(Past_homo_Skim_vsControl1$X1.x, Past_homo_Skim_vsControl1$X1.y, paired = TRUE, alternative = "two.sided")$p.value
+p[6] <- t.test(Past_homo_Skim_vsControl1$X2.x, Past_homo_Skim_vsControl1$X2.y, paired = TRUE, alternative = "two.sided")$p.value
+p[7] <- t.test(Past_homo_Skim_vsControl1$X3.x, Past_homo_Skim_vsControl1$X3.y, paired = TRUE, alternative = "two.sided")$p.value
+p[8] <- t.test(Past_homo_Skim_vsControl1$X4.x, Past_homo_Skim_vsControl1$X4.y, paired = TRUE, alternative = "two.sided")$p.value
+p[9] <- t.test(Post_SKim_vsControl1$X1.x, Post_SKim_vsControl1$X1.y, paired = TRUE, alternative = "two.sided")$p.value
+p[10] <- t.test(Post_SKim_vsControl1$X2.x, Post_SKim_vsControl1$X2.y, paired = TRUE, alternative = "two.sided")$p.value
+p[11] <- t.test(Post_SKim_vsControl1$X3.x, Post_SKim_vsControl1$X3.y, paired = TRUE, alternative = "two.sided")$p.value
+p[12] <- t.test(Post_SKim_vsControl1$X4.x, Post_SKim_vsControl1$X4.y, paired = TRUE, alternative = "two.sided")$p.value
+p[13] <- t.test(Raw_HTSKim_vsControl1$X1.x, Raw_HTSKim_vsControl1$X1.y, paired = TRUE, alternative = "two.sided")$p.value
+p[14] <- t.test(Raw_HTSKim_vsControl1$X2.x, Raw_HTSKim_vsControl1$X2.y, paired = TRUE, alternative = "two.sided")$p.value
+p[15] <- t.test(Raw_HTSKim_vsControl1$X3.x, Raw_HTSKim_vsControl1$X3.y, paired = TRUE, alternative = "two.sided")$p.value
+p[16] <- t.test(Raw_HTSKim_vsControl1$X4.x, Raw_HTSKim_vsControl1$X4.y, paired = TRUE, alternative = "two.sided")$p.value
+p[17] <- t.test(SC_BMvsControl1$X1.x, SC_BMvsControl1$X1.y, paired = TRUE, alternative = "two.sided")$p.value
+p[18] <- t.test(SC_BMvsControl1$X2.x, SC_BMvsControl1$X2.y, paired = TRUE, alternative = "two.sided")$p.value
+p[19] <- t.test(SC_BMvsControl1$X3.x, SC_BMvsControl1$X3.y, paired = TRUE, alternative = "two.sided")$p.value
+p[20] <- t.test(SC_BMvsControl1$X4.x, SC_BMvsControl1$X4.y, paired = TRUE, alternative = "two.sided")$p.value
+p1 <- p.adjust(p,method = 'holm')
